@@ -25,3 +25,6 @@ else
   php bin/magento maintenance:disable
   php bin/magento cache:flush
 fi
+
+chmod -R 777 .
+chown -R www:www-data .
