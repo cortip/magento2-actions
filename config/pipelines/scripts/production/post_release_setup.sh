@@ -26,5 +26,5 @@ else
   php bin/magento cache:flush
 fi
 
-chmod -R 777 .
-chown -R www:www-data .
+#chmod -R 777 .
+#chown -R www:www-data .
