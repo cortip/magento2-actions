@@ -71,4 +71,8 @@ fi
 -o deploy_path_custom=$HOST_DEPLOY_PATH \
 -o write_use_sudo=$WRITE_USE_SUDO
 
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "chown -R www-data:www-data $HOST_DEPLOY_PATH && chmod -R 775 $HOST_DEPLOY_PATH"
+
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && /bin/bash $HOST_DEPLOY_PATH/deployer/scripts/production/post_release_setup.sh"
+
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "chown -R www-data:www-data $HOST_DEPLOY_PATH && chmod -R 775 $HOST_DEPLOY_PATH"
