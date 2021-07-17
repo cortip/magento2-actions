@@ -39,6 +39,9 @@ rm -rf var/cache/*
 rm -rf var/generation/*
 rm -rf var/page_cache/*
 
+echo "👮🏻 fix access rights"
+chmod 777 -R var pub generated
+
 echo "⚙️ compile things"
 php bin/magento setup:di:compile
 echo "👨🏼‍🚀 set shop to production mode"
@@ -50,6 +53,7 @@ chmod 777 -R var pub generated
 echo "🧹 running Magento clean cache commands"
 php bin/magento cache:clean
 php bin/magento cache:flush
+echo "♻️ flushed cache"
 
 #exit from user www
 echo "♱ get back to root mode"
