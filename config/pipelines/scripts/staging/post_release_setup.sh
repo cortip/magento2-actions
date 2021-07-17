@@ -8,6 +8,10 @@ then
   exit 3
 fi
 
+chmod -R 775 .
+chown -R www:www-data .
+su - www
+
 echo "Import magento config"
 php bin/magento app:config:import --no-interaction
 
@@ -27,6 +31,3 @@ else
 fi
 
 php bin/magento deploy:mode:set development
-
-#chmod -R 777 .
-#chown -R www:www-data .
