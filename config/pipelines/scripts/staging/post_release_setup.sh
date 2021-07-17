@@ -12,6 +12,8 @@ chmod -R 775 .
 chown -R www:www-data .
 su - www
 
+composer install
+
 echo "Import magento config"
 php bin/magento app:config:import --no-interaction
 
@@ -31,3 +33,10 @@ else
 fi
 
 php bin/magento deploy:mode:set development
+
+#exit from user www
+exit
+
+#make stuff writable
+chmod -R 777 .
+chown -R www:www-data .
