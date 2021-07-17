@@ -58,5 +58,5 @@ fi
 #
 ##make stuff writable
 #echo "👮🏻 fix access rights"
-#chmod -R 777 .
-#chown -R www:www-data .
+chmod -R 777 .
+chown -R www:www-data .

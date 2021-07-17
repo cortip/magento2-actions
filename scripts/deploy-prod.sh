@@ -16,7 +16,7 @@ echo "$SSH_CONFIG" > /etc/ssh/ssh_config && chmod 600 /etc/ssh/ssh_config
 
 
 
-echo "Create artifact and send to server"
+echo "Create artifact and send to server!"
 
 cd $PROJECT_PATH
 
@@ -78,30 +78,29 @@ ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd 
 #ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "chown -R www-data:www-data $HOST_DEPLOY_PATH && chmod -R 775 $HOST_DEPLOY_PATH"
 
 
-echo "📀 upgrade magento to new modules and stuff"
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento setup:upgrade"
-
-
-echo "✂️ remove cached stuff"
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && rm -rf pub/static/* && rm -rf var/view_preprocessed/* && rm -rf var/cache/* && rm -rf var/generation/* && rm -rf var/page_cache/*"
-
-echo "👮🏻 fix access rights"
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && chmod 777 -R var pub generated"
-
-echo "👨🏼‍🚀 set shop to production mode"
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento deploy:mode:set production"
-
-echo "⚙️ compile things"
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento setup:di:compile"
-
-echo "🪂 deploy compiled stuff"
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento setup:static-content:deploy"
-
-echo "👮🏻 fix access rights"
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && chmod 777 -R var pub generated"
-
-echo "🧹 running Magento clean cache commands"
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento cache:clean && php bin/magento cache:flush"
-
-echo "👮🏻 fix access rights again"
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && chmod -R 777 . && chown -R www:www-data ."
+#echo "📀 upgrade magento to new modules and stuff"
+#ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento setup:upgrade"
+#
+#echo "✂️ remove cached stuff"
+#ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && rm -rf pub/static/* && rm -rf var/view_preprocessed/* && rm -rf var/cache/* && rm -rf var/generation/* && rm -rf var/page_cache/*"
+#
+#echo "👮🏻 fix access rights"
+#ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && chmod 777 -R var pub generated"
+#
+#echo "👨🏼‍🚀 set shop to production mode"
+#ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento deploy:mode:set production"
+#
+#echo "⚙️ compile things"
+#ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento setup:di:compile"
+#
+#echo "🪂 deploy compiled stuff"
+#ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento setup:static-content:deploy"
+#
+#echo "👮🏻 fix access rights"
+#ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && chmod 777 -R var pub generated"
+#
+#echo "🧹 running Magento clean cache commands"
+#ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && php bin/magento cache:clean && php bin/magento cache:flush"
+#
+#echo "👮🏻 fix access rights again"
+#ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/current/magento/ && chmod -R 777 . && chown -R www:www-data ."
