@@ -26,7 +26,8 @@ fi
 #mysql < backups/magento.sql
 
 php -dmemory_limit=-1 bin/magento setup:di:compile
-php -dmemory_limit=-1 bin/magento deploy:mode:set --skip-compilation production
+#php -dmemory_limit=-1 bin/magento deploy:mode:set --skip-compilation production
+php -dmemory_limit=-1 bin/magento deploy:mode:set production
 
 bin/magento setup:static-content:deploy
 #bin/magento setup:static-content:deploy en_US  -a adminhtml
