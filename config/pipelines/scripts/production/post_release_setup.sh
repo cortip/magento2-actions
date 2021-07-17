@@ -32,17 +32,30 @@ else
   php bin/magento cache:flush
 fi
 
-php bin/magento setup:di:compile
-php bin/magento deploy:mode:set production
+echo "✂️ remove cached stuff"
+rm -rf pub/static/*
+rm -rf var/view_preprocessed/*
+rm -rf var/cache/*
+rm -rf var/generation/*
+rm -rf var/page_cache/*
 
+echo "⚙️ compile things"
+php bin/magento setup:di:compile
+echo "👨🏼‍🚀 set shop to production mode"
+php bin/magento deploy:mode:set production
+echo "🪂 deploy compiled stuff"
 php bin/magento setup:static-content:deploy
+echo "👮🏻 fix access rights"
 chmod 777 -R var pub generated
+echo "🧹 running Magento clean cache commands"
 php bin/magento cache:clean
 php bin/magento cache:flush
 
 #exit from user www
+echo "♱ get back to root mode"
 exit
 
 #make stuff writable
+echo "👮🏻 fix access rights"
 chmod -R 777 .
 chown -R www:www-data .
