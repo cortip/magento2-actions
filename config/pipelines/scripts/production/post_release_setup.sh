@@ -31,32 +31,32 @@ else
   php bin/magento cache:flush
 fi
 
-#echo "📀 upgrade magento to new modules and stuff"
-#php bin/magento setup:upgrade
-#
-#echo "✂️ remove cached stuff"
-#rm -rf pub/static/*
-#rm -rf var/view_preprocessed/*
-#rm -rf var/cache/*
-#rm -rf var/generation/*
-#rm -rf var/page_cache/*
-#
-#echo "👮🏻 fix access rights"
-#chmod 777 -R var pub generated
-#echo "👨🏼‍🚀 set shop to production mode"
-#php bin/magento deploy:mode:set production
-#echo "⚙️ compile things"
-#php bin/magento setup:di:compile
-#echo "🪂 deploy compiled stuff"
-#php bin/magento setup:static-content:deploy
-#echo "👮🏻 fix access rights"
-#chmod 777 -R var pub generated
-#echo "🧹 running Magento clean cache commands"
-#php bin/magento cache:clean
-#php bin/magento cache:flush
-#echo "♻️ flushed cache"
-#
-##make stuff writable
-#echo "👮🏻 fix access rights"
+echo "📀 upgrade magento to new modules and stuff"
+php bin/magento setup:upgrade
+
+echo "✂️ remove cached stuff"
+rm -rf pub/static/*
+rm -rf var/view_preprocessed/*
+rm -rf var/cache/*
+rm -rf var/generation/*
+rm -rf var/page_cache/*
+
+echo "👮🏻 fix access rights"
+chmod 777 -R var pub generated
+echo "👨🏼‍🚀 set shop to production mode"
+php bin/magento deploy:mode:set production
+echo "⚙️ compile things"
+php bin/magento setup:di:compile
+echo "🪂 deploy compiled stuff"
+php bin/magento setup:static-content:deploy
+echo "👮🏻 fix access rights"
+chmod 777 -R var pub generated
+echo "🧹 running Magento clean cache commands"
+php bin/magento cache:clean
+php bin/magento cache:flush
+echo "♻️ flushed cache"
+
+#make stuff writable
+echo "👮🏻 fix access rights"
 chmod -R 777 .
 chown -R www:www-data .
