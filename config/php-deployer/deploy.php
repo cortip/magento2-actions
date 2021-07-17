@@ -8,7 +8,8 @@ require 'recipe/common.php';
 
 set('memory_limit', -1);
 set('writable_use_sudo', '{{write_use_sudo}}');
-set('writable_mode', 'chown'); // chmod, chown, chgrp or acl.
+set('http_group', 'www');
+set('writable_mode', 'chgrp'); // chmod, chown, chgrp or acl.
 set('deploy_path', "{{deploy_path_custom}}");
 set('keep_releases', 3);
 

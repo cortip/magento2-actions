@@ -26,5 +26,7 @@ else
   php bin/magento cache:flush
 fi
 
+#php bin/magento deploy:mode:set production
+
 #chmod -R 777 .
 #chown -R www:www-data .
