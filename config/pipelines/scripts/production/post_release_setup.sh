@@ -47,15 +47,19 @@ echo "👨🏼‍🚀 set shop to production mode"
 php bin/magento deploy:mode:set production
 
 #https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/themes/js-bundling.html
-php bin/magento config:set dev/js/enable_js_bundling 0
-php bin/magento config:set dev/js/minify_files 0
+#https://devdocs.magento.com/guides/v2.4/config-guide/prod/config-reference-most.html
+php bin/magento config:set dev/js/enable_js_bundling 1
+php bin/magento config:set dev/js/minify_files 1
 php bin/magento config:set dev/static/sign 0
 php bin/magento config:set dev/js/merge_files 0
+
+php bin/magento config:set dev/css/merge_css_files 1
+php bin/magento config:set dev/css/minify_files 1
 
 echo "⚙️ compile things"
 php bin/magento setup:di:compile
 echo "🪂 deploy compiled stuff"
-php bin/magento setup:static-content:deploy
+php bin/magento setup:static-content:deploy -f
 echo "👮🏻 fix access rights"
 chmod 777 -R var pub generated
 echo "🧹 running Magento clean cache commands"
