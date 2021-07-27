@@ -11,7 +11,9 @@ fi
 #chmod -R 775 .
 #chown -R www:www-data .
 #
-#composer install
+composer install
+
+bin/magento deploy:mode:set production
 
 echo "Import magento config"
 php bin/magento app:config:import --no-interaction
