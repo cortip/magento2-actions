@@ -11,7 +11,7 @@ fi
 #chmod -R 775 .
 #chown -R www:www-data .
 #
-composer install
+composer install --no-dev --no-progress
 
 bin/magento deploy:mode:set production
 
@@ -45,9 +45,8 @@ rm -rf var/page_cache/*
 
 echo "👮🏻 fix access rights"
 chmod 777 -R var pub generated
-echo "👨🏼‍🚀 set shop to production mode"
-php bin/magento deploy:mode:set production
 
+echo "🏗 Set setting to combine assets"
 #https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/themes/js-bundling.html
 #https://devdocs.magento.com/guides/v2.4/config-guide/prod/config-reference-most.html
 php bin/magento config:set dev/js/enable_js_bundling 1
@@ -57,6 +56,9 @@ php bin/magento config:set dev/js/merge_files 0
 
 php bin/magento config:set dev/css/merge_css_files 1
 php bin/magento config:set dev/css/minify_files 1
+
+echo "👨🏼‍🚀 set shop to production mode"
+php bin/magento deploy:mode:set production
 
 echo "⚙️ compile things"
 php bin/magento setup:di:compile

@@ -25,9 +25,17 @@ fi
 
 #mysql < backups/magento.sql
 
+php bin/magento config:set dev/js/enable_js_bundling 1
+php bin/magento config:set dev/js/minify_files 1
+php bin/magento config:set dev/static/sign 0
+php bin/magento config:set dev/js/merge_files 0
+
+php bin/magento config:set dev/css/merge_css_files 1
+php bin/magento config:set dev/css/minify_files 1
+
 php -dmemory_limit=-1 bin/magento setup:di:compile
-php -dmemory_limit=-1 bin/magento deploy:mode:set --skip-compilation production
-#php -dmemory_limit=-1 bin/magento deploy:mode:set production
+#php -dmemory_limit=-1 bin/magento deploy:mode:set --skip-compilation production
+php -dmemory_limit=-1 bin/magento deploy:mode:set production
 
 bin/magento setup:static-content:deploy
 #bin/magento setup:static-content:deploy en_US  -a adminhtml
