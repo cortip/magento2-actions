@@ -71,7 +71,11 @@ fi
 #php bin/magento cache:flush
 #echo "♻️ flushed cache"
 
-#make stuff writable
-echo "👮🏻 fix access rights"
-chmod -R 777 .
-chown -R www:www-data .
+##make stuff writable
+#echo "👮🏻 fix access rights"
+#chmod -R 777 .
+#chown -R www:www-data .
+
+sudo systemctl restart nginx.service
+sudo systemctl restart varnish.service
+curl --silent --output /dev/null https://miovalore.com
