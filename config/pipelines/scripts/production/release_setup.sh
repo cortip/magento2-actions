@@ -3,6 +3,8 @@
 set -e
 
 # operation to make before the switch of the release folder
+composer install
+
 php bin/magento config:set dev/js/enable_js_bundling 1
 php bin/magento config:set dev/js/minify_files 1
 php bin/magento config:set dev/static/sign 0
