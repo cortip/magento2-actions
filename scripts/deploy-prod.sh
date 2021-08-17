@@ -53,7 +53,7 @@ echo '------> Deploying bucket ...';
 -o write_use_sudo=$WRITE_USE_SUDO
 
 # setup magento
-ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  production "cd $HOST_DEPLOY_PATH/release/magento/ && /bin/bash $HOST_DEPLOY_PATH/deployer/scripts/production/release_setup.sh"
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null production "cd $HOST_DEPLOY_PATH/release/magento/ && /bin/bash $HOST_DEPLOY_PATH/deployer/scripts/production/release_setup.sh"
 
 
 echo '------> Deploying release ...';
