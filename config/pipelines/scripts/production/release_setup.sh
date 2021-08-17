@@ -19,8 +19,10 @@ set -e
 #bin/magento cache:clean
 #bin/magento cache:flush
 
+cp ../../../shared/magento/app/etc/env.php app/etc/env.php
+
 echo "🎼 Composer install"
-php /usr/local/bin/composer --no-interaction install
+php /usr/local/bin/composer --no-interaction --no-dev --no-progress install
 
 echo "✂️ remove cached stuff"
 rm -rf pub/static/*
