@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 
-# check and edit this path (public path of magento)
+echo "post release script"
 
-if [ ! -f app/etc/env.php ]
+if [ ! -s app/etc/env.php ]
 then
   echo "This is the first deploy? You must set magento env.php"
   exit 3
 fi
-#
-#chmod -R 775 .
-#chown -R www:www-data .
-#
-composer install --no-dev --no-progress
 
-bin/magento deploy:mode:set default
+chmod -R 775 .
+chown -R www:www-data .
+su - www
+
+composer install
 
 echo "Import magento config"
 php bin/magento app:config:import --no-interaction
@@ -33,6 +32,11 @@ else
   php bin/magento cache:flush
 fi
 
-sudo systemctl restart nginx.service
-sudo systemctl restart varnish.service
-curl --silent --output /dev/null https://miovalore.com
+php bin/magento deploy:mode:set development
+
+#exit from user www
+exit
+
+#make stuff writable
+chmod -R 777 .
+chown -R www:www-data .

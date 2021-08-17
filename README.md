@@ -5,7 +5,7 @@ tests - phpcs - build - deploy
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=C-P-vA6aw34"><img src="https://img.youtube.com/vi/C-P-vA6aw34/0.jpg" alt="IMAGE ALT TEXT"></a>
-</div
+</div>
 
 # usage
 

@@ -19,7 +19,7 @@ set -e
 #bin/magento cache:clean
 #bin/magento cache:flush
 
-php /usr/local/bin/composer install
+php /usr/local/bin/composer --no-interaction install
 
 echo "✂️ remove cached stuff"
 rm -rf pub/static/*
@@ -27,9 +27,6 @@ rm -rf var/view_preprocessed/*
 rm -rf var/cache/*
 rm -rf var/generation/*
 rm -rf var/page_cache/*
-
-echo "📀 upgrade magento to new modules and stuff"
-php bin/magento setup:upgrade
 
 echo "👮🏻 fix access rights"
 chmod 777 -R var pub generated
@@ -44,6 +41,9 @@ php bin/magento config:set dev/js/merge_files 0
 
 php bin/magento config:set dev/css/merge_css_files 1
 php bin/magento config:set dev/css/minify_files 1
+
+echo "📀 upgrade magento to new modules and stuff"
+php bin/magento setup:upgrade
 
 echo "👨🏼‍🚀 set shop to production mode"
 php bin/magento deploy:mode:set production
