@@ -19,7 +19,7 @@ set -e
 #bin/magento cache:clean
 #bin/magento cache:flush
 
-echo "🚦 Copy env.php to release candidate dir"
+echo "🚦 Copy env.php to release candidate dir!"
 cp ../../../shared/magento/app/etc/env.php app/etc/env.php
 
 echo "🎼 Composer install"
