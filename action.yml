@@ -1,10 +1,10 @@
 name: 'Magento 2 actions'
 description: 'Test Build Deploy M2 projects'
-author: 'MAD IT (www.madit.fr)'
+author: 'Cortip (cortip.com)'
 inputs: 
   php:
     description: 'version of php to use 7.1, 7.2 or 7.4'
-    default: '7.1'
+    default: '7.4'
   process:
     description: 'Possible values: build, static-test, integration-test, unit-test, phpcs-test, deploy-staging, deploy-production, cleanup-staging, cleanup-production, security-scan-[files|modules]'
     default: 'build'
