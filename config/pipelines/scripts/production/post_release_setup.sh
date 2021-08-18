@@ -33,6 +33,7 @@ else
   php bin/magento cache:flush
 fi
 
+
 #echo "📀 upgrade magento to new modules and stuff"
 #php bin/magento setup:upgrade
 #

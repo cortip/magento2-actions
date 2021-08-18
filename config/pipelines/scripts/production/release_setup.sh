@@ -19,7 +19,11 @@ set -e
 #bin/magento cache:clean
 #bin/magento cache:flush
 
-php /usr/local/bin/composer --no-interaction install
+echo "🚦 Copy env.php to release candidate dir"
+cp ../../../shared/magento/app/etc/env.php app/etc/env.php
+
+echo "🎼 Composer install"
+php /usr/local/bin/composer --no-interaction --no-dev --no-progress install
 
 echo "✂️ remove cached stuff"
 rm -rf pub/static/*
@@ -43,7 +47,7 @@ php bin/magento config:set dev/css/merge_css_files 1
 php bin/magento config:set dev/css/minify_files 1
 
 echo "📀 upgrade magento to new modules and stuff"
-php bin/magento setup:upgrade
+php bin/magento setup:upgrade --keep-generated
 
 echo "👨🏼‍🚀 set shop to production mode"
 php bin/magento deploy:mode:set production
