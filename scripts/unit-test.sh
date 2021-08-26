@@ -2,6 +2,8 @@
 
 set -e
 
+export MAGE_RUN_CODE=default
+
 PROJECT_PATH="$(pwd)"
 
 cd $PROJECT_PATH/magento
